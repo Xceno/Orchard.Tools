@@ -1,0 +1,8 @@
+﻿@model $$ModuleName$$.Settings.$$PartName$$TypePartSettings
+@using Orchard.ContentManagement;
+
+<fieldset>
+    <legend>@T("$$PartName$$ type settings")</legend>
+$$TypePartEditorShapeFormFields$$
+</fieldset>
+

@@ -1,0 +1,1 @@
+﻿			builder.WithSetting("$$PartName$$TypePartSettings.$$PropertyName$$", model.$$PropertyName$$);

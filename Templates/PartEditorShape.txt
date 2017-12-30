@@ -1,0 +1,12 @@
+﻿@model $$ModuleName$$.Models.$$PartName$$
+@using Orchard.ContentManagement;
+
+@{ Layout.Title = T("Edit $$PartName$$").ToString(); }
+
+<fieldset>
+	<legend>@T("$$PartName$$ settings")</legend>
+	<ol>
+$$PartEditorShapeFormFields$$
+	</ol>
+</fieldset>
+

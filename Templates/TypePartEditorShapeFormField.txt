@@ -1,0 +1,5 @@
+﻿        <div>
+            @Html.LabelFor(m => m.$$PropertyName$$, @T("Default $$PropertyName$$"))
+            @Html.EditorFor(m => m.$$PropertyName$$)
+            @Html.ValidationMessageFor(m => m.$$PropertyName$$, "*")
+        </div>

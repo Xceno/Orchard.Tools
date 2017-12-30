@@ -1,0 +1,2 @@
+﻿        public virtual $$PropertyType$$ $$PropertyName$$ { get; set; }
+

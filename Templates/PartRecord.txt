@@ -1,0 +1,11 @@
+﻿namespace $$ModuleName$$.Models
+{
+	using Orchard;
+	using Orchard.ContentManagement.Records;
+
+	$$PartFeatureAttribute$$
+	public class $$CleanPartName$$Record : ContentPartRecord
+	{
+$$PartRecordProperties$$
+	}
+}
