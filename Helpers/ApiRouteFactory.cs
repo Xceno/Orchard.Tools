@@ -1,5 +1,4 @@
-﻿namespace Orchard.Tools.Helpers
-{
+﻿namespace Orchard.Tools.Helpers {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -17,13 +16,11 @@
     /// The ApiRouteFactoy makes it possible to easily write WebApi Routes in the style of AttributeRouting,
     /// which is currently not supported in Orchard.
     /// </summary>
-    public class ApiRouteFactory
-    {
+    public class ApiRouteFactory {
         private readonly string baseApiRoute;
         private readonly string moduleAreaName;
 
-        public ApiRouteFactory(string moduleAreaName, string baseApiRoute)
-        {
+        public ApiRouteFactory(string moduleAreaName, string baseApiRoute) {
             this.baseApiRoute = baseApiRoute.EndsWith("/") ? baseApiRoute : string.Format("{0}/", baseApiRoute);
             this.moduleAreaName = moduleAreaName;
         }
@@ -40,8 +37,7 @@
         /// </param>
         /// <returns>A fully configured HttpRouteDescriptor</returns>
         public HttpRouteDescriptor BuildRoute<T>(string routeSlug, string action)
-            where T : ApiController
-        {
+            where T : ApiController {
             return this.MakeRouteDescriptor(typeof(T), routeSlug, action);
         }
 
@@ -57,113 +53,97 @@
         /// <param name="routeParts">The separate route  parts of the action. Will be appended to the base api route.</param>
         /// <returns>A fully configured HttpRouteDescriptor</returns>
         public HttpRouteDescriptor BuildRouteExplicit<TController, TParam, TResult>(Expression<Func<TController, Func<TParam, TResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRouteExplicit<TController, TParam1, TParam2, TResult>(Expression<Func<TController, Func<TParam1, TParam2, TResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRouteExplicit<TController, TParam1, TParam2, TParam3, TResult>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, TResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRouteExplicit<TController, TParam1, TParam2, TParam3, TParam4, TResult>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, TParam4, TResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController>(Expression<Func<TController, Func<IHttpActionResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam>(Expression<Func<TController, Func<TParam, IHttpActionResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2>(Expression<Func<TController, Func<TParam1, TParam2, IHttpActionResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2, TParam3>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, IHttpActionResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2, TParam3, TParam4>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, TParam4, IHttpActionResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2, TParam3, TParam4, TParam5>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, TParam4, TParam5, IHttpActionResult>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController>(Expression<Func<TController, Func<Task<IHttpActionResult>>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam>(Expression<Func<TController, Func<TParam, Task<IHttpActionResult>>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2>(Expression<Func<TController, Func<TParam1, TParam2, Task<IHttpActionResult>>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2, TParam3>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, Task<IHttpActionResult>>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2, TParam3, TParam4>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, TParam4, Task<IHttpActionResult>>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
 
         public HttpRouteDescriptor BuildRoute<TController, TParam1, TParam2, TParam3, TParam4, TParam5>(Expression<Func<TController, Func<TParam1, TParam2, TParam3, TParam4, TParam5, Task<IHttpActionResult>>>> expression, params string[] routeParts)
-            where TController : ApiController
-        {
+            where TController : ApiController {
             var actionName = ReflectOnMethod<TController>.NameOf(expression);
             return this.MakeRouteDescriptor(typeof(TController), string.Join("/", routeParts), actionName);
         }
@@ -179,8 +159,7 @@
         /// <example>GetUser, PostUser, PutUser</example>
         /// </param>
         /// <returns>A fully configured HttpRouteDescriptor</returns>
-        public HttpRouteDescriptor MakeRouteDescriptor(Type controller, string routeSlug, string action)
-        {
+        public HttpRouteDescriptor MakeRouteDescriptor(Type controller, string routeSlug, string action) {
             var route = this.baseApiRoute + routeSlug;
             var ctrlIndex = controller.Name.LastIndexOf("Controller", StringComparison.Ordinal);
             var controllerName = controller.Name.Substring(0, ctrlIndex);
@@ -206,8 +185,7 @@
 
             var constraints = ParseRouteAttributeConstraints(route, defaults, httpMethod);
 
-            var routeDescriptor = new HttpRouteDescriptor
-            {
+            var routeDescriptor = new HttpRouteDescriptor {
                 RouteTemplate = CleanupRoute(route),
                 Defaults = defaults,
                 Priority = priority,
@@ -217,26 +195,24 @@
             return routeDescriptor;
         }
 
-        private static HttpMethod HttpMethodOfAction(string actionName)
-        {
-            if (actionName.StartsWith(HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase))
+        private static HttpMethod HttpMethodOfAction(string actionName) {
+            if ( actionName.StartsWith(HttpMethod.Post.Method, StringComparison.OrdinalIgnoreCase) )
                 return HttpMethod.Post;
 
-            if (actionName.StartsWith(HttpMethod.Put.Method, StringComparison.OrdinalIgnoreCase))
+            if ( actionName.StartsWith(HttpMethod.Put.Method, StringComparison.OrdinalIgnoreCase) )
                 return HttpMethod.Put;
 
             // Yep, there is no official HttpMethod.Patch!
-            if (actionName.StartsWith("Patch", StringComparison.OrdinalIgnoreCase))
+            if ( actionName.StartsWith("Patch", StringComparison.OrdinalIgnoreCase) )
                 return new HttpMethod("PATCH");
 
-            if (actionName.StartsWith(HttpMethod.Delete.Method, StringComparison.OrdinalIgnoreCase))
+            if ( actionName.StartsWith(HttpMethod.Delete.Method, StringComparison.OrdinalIgnoreCase) )
                 return HttpMethod.Delete;
 
             return HttpMethod.Get;
         }
 
-        private static string CleanupRoute(string route)
-        {
+        private static string CleanupRoute(string route) {
             var split = route.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             var cleanAttr = split.Select(a => a.Contains(":") ? string.Format("{{{0}}}", a.Trim('{', '}').Substring(0, a.IndexOf(':') - 1)) : a);
             var cleanRoute = string.Join("/", cleanAttr);
@@ -255,77 +231,68 @@
         /// <param name="route">The absolute route to be parsed.</param>
         /// <param name="defaults">An object that will be filled with all optional parameters. Should be used as value for <c>HttpRouteDescriptor.Defaults</c>.</param>
         /// <param name="httpMethod">The routes http-verb.</param>
-        private static dynamic ParseRouteAttributeConstraints(string route, ExpandoObject defaults, HttpMethod httpMethod = null)
-        {
+        private static dynamic ParseRouteAttributeConstraints(string route, ExpandoObject defaults, HttpMethod httpMethod = null) {
             var split = route.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             var attributes = split.Where(x => x.StartsWith("{") && x.EndsWith("}"));
 
             dynamic constraints = new ExpandoObject();
             var underlyingObject = (IDictionary<string, object>)constraints;
 
-            foreach (var attr in attributes)
-            {
+            foreach ( var attr in attributes ) {
                 var tmpSplit = attr.Trim('{', '}').Split(':');
                 var key = tmpSplit[0];
-                if (tmpSplit.Length == 2 && !underlyingObject.ContainsKey(key))
-                {
+                if ( tmpSplit.Length == 2 && !underlyingObject.ContainsKey(key) ) {
                     var typeName = tmpSplit[1];
                     var isOptional = typeName.EndsWith("?");
 
-                    if (isOptional)
-                    {
+                    if ( isOptional ) {
                         typeName = typeName.TrimEnd('?');
                         ((IDictionary<string, object>)defaults).Add(key, RouteParameter.Optional);
                     }
 
                     var constraint = ConstraintForTypename(typeName, isOptional);
-                    if (constraint != null)
-                    {
+                    if ( constraint != null ) {
                         underlyingObject.Add(key, constraint);
                     }
-                    else
-                    {
+                    else {
                         Debug.WriteLine("No matching IHttpRouteConstraint found for type '{0}'", typeName);
                     }
                 }
             }
 
-            if (httpMethod != null)
-            {
+            if ( httpMethod != null ) {
                 underlyingObject.Add("httpMethod", new HttpMethodConstraint(httpMethod, HttpMethod.Options));
             }
 
             return constraints;
         }
 
-        private static IHttpRouteConstraint ConstraintForTypename(string typename, bool isOptional)
-        {
+        private static IHttpRouteConstraint ConstraintForTypename(string typename, bool isOptional) {
             /* List of all route constraints:
              * https://msdn.microsoft.com/en-us/library/system.web.http.routing.constraints(v=vs.118).aspx
              */
 
             IHttpRouteConstraint constraint = null;
-            switch (typename)
-            {
+            switch ( typename ) {
                 case "bool":
                 case "boolean":
-                    constraint = new BoolRouteConstraint();
-                    break;
+                constraint = new BoolRouteConstraint();
+                break;
                 case "int":
-                    constraint = new IntRouteConstraint();
-                    break;
+                constraint = new IntRouteConstraint();
+                break;
                 case "long":
-                    constraint = new LongRouteConstraint();
-                    break;
+                constraint = new LongRouteConstraint();
+                break;
                 case "float":
-                    constraint = new FloatRouteConstraint();
-                    break;
+                constraint = new FloatRouteConstraint();
+                break;
                 case "double":
-                    constraint = new DoubleRouteConstraint();
-                    break;
+                constraint = new DoubleRouteConstraint();
+                break;
                 case "string":
-                    constraint = new AlphaRouteConstraint();
-                    break;
+                constraint = new AlphaRouteConstraint();
+                break;
             }
 
             return isOptional ? new OptionalRouteConstraint(constraint) : constraint;

@@ -1,5 +1,4 @@
-﻿namespace Orchard.Tools.Commands
-{
+﻿namespace Orchard.Tools.Commands {
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -13,8 +12,7 @@
     /// Original code by Piotr Szmyd.
     /// http://gallery.orchardproject.net/Packages/Orchard.Module.Szmyd.CodeGeneration
     /// </summary>
-    public class CodeGenerationCommands : DefaultOrchardCommandHandler
-    {
+    public class CodeGenerationCommands : DefaultOrchardCommandHandler {
         private static readonly IDictionary<string, TemplateInfo> filesInfo =
             new Dictionary<string, TemplateInfo>
             {
@@ -36,8 +34,7 @@
         private static readonly string templatePath = HostingEnvironment.MapPath("~/Modules/Orchard.Tools/Templates/");
         private readonly IExtensionManager extensionManager;
 
-        public CodeGenerationCommands(IExtensionManager extensionManager)
-        {
+        public CodeGenerationCommands(IExtensionManager extensionManager) {
             this.extensionManager = extensionManager;
         }
 
@@ -65,24 +62,21 @@
                      + "/ForFeature - specify the feature to which your part has to be assigned to (if any)")]
         [CommandName("codegen part")]
         [OrchardSwitches("Properties, ShapeFile, AttachTo, ForFeature")]
-        public void CreatePart(string moduleName, string partName)
-        {
+        public void CreatePart(string moduleName, string partName) {
             this.Context.Output.WriteLine(this.T("Creating content part {0} in module {1}", partName, moduleName));
 
             var extensionDescriptor = this.extensionManager.GetExtension(moduleName);
 
-            if ( extensionDescriptor == null )
-            {
+            if ( extensionDescriptor == null ) {
                 throw new OrchardException(this.T("Creating content part {0} failed: target module {1} could not be found.", partName, moduleName));
             }
 
             var partNameWithoutSuffix = partName;
-            if ( partName.EndsWith("Part") )
-            {
+            if ( partName.EndsWith("Part") ) {
                 partNameWithoutSuffix = partName.Substring(0, partName.LastIndexOf("Part", StringComparison.Ordinal));
             }
 
-            var shapeName = ( string.IsNullOrWhiteSpace(this.ShapeFile) ? partNameWithoutSuffix : this.ShapeFile )
+            var shapeName = (string.IsNullOrWhiteSpace(this.ShapeFile) ? partNameWithoutSuffix : this.ShapeFile)
                 .Trim().Replace('.', '_').Replace("-", "__");
             var shapeFileName = string.IsNullOrWhiteSpace(this.ShapeFile) ? partNameWithoutSuffix : this.ShapeFile;
             var featureAttribute = string.IsNullOrWhiteSpace(this.ForFeature) ? string.Empty : string.Format("[OrchardFeature(\"{0}\")]", this.ForFeature);
@@ -104,8 +98,7 @@
             var csProjPath = HostingEnvironment.MapPath(string.Format("{1}/{0}/{0}.csproj", extensionDescriptor.Id, extensionFolder));
 
             // Filling properties according to provided data
-            try
-            {
+            try {
                 var properties = string.IsNullOrWhiteSpace(this.Properties)
                     ? new KeyValuePair<string, string>[0]
                     : this.Properties.Trim()
@@ -125,33 +118,28 @@
                 replacements.Add("PartRecordProperties", recordProps);
                 replacements.Add("PartEditorShapeFormFields", editorShapeFields);
             }
-            catch ( Exception )
-            {
+            catch ( Exception ) {
                 throw new OrchardException(this.T("Creating content part {0} failed: Incorrect properties definition.", partName, moduleName));
             }
 
             // Create dirs
-            foreach ( var kv in filesInfo )
-            {
+            foreach ( var kv in filesInfo ) {
                 // Prepare templated file names
                 kv.Value.Name = replacements.Aggregate(kv.Value.Name,
                     (current, s) => current.Replace(string.Format("$${0}$$", s.Key), s.Value));
 
                 var dirPath = HostingEnvironment.MapPath(extensionFolder + "/" + extensionDescriptor.Id + "/" + kv.Value.Dir);
                 var filePath = HostingEnvironment.MapPath(extensionFolder + "/" + extensionDescriptor.Id + "/" + kv.Value.Dir + kv.Value.Name);
-                if ( !Directory.Exists(dirPath) )
-                {
+                if ( !Directory.Exists(dirPath) ) {
                     Directory.CreateDirectory(dirPath);
                 }
-                if ( File.Exists(filePath) )
-                {
+                if ( File.Exists(filePath) ) {
                     throw new OrchardException(this.T("{2} for {0} already exists in target module {1}.", partName, moduleName, kv.Key));
                 }
             }
 
             // Generating files from templates
-            foreach ( var kv in filesInfo )
-            {
+            foreach ( var kv in filesInfo ) {
                 var outputPath = HostingEnvironment.MapPath(extensionFolder + "/" + extensionDescriptor.Id + "/" + kv.Value.Dir + kv.Value.Name);
                 FillTemplateAndCreateFile(kv.Key, outputPath, replacements);
                 this.AddToModuleProject(kv.Value.Dir + kv.Value.Name, csProjPath, kv.Value.IsCompiled);
@@ -164,10 +152,8 @@
             var itemGroupReference = string.Format("    <Place {0}=\"Content:before\"/>\r\n", replacements["PartShapeName"]);
             placementText = placementText.Insert(placementText.LastIndexOf("</Placement>", StringComparison.Ordinal), itemGroupReference);
 
-            if ( placementPath != null )
-            {
-                if ( !File.Exists(placementPath) )
-                {
+            if ( placementPath != null ) {
+                if ( !File.Exists(placementPath) ) {
                     this.AddToModuleProject("Placement.info", csProjPath, false);
                 }
                 File.WriteAllText(placementPath, placementText);
@@ -181,14 +167,12 @@
                      + "/Properties - comma-delimited list of name:type values, eg. Name:string,Count:int\r\n\t")]
         [CommandName("codegen typesettings")]
         [OrchardSwitches("Properties")]
-        public void CreateSettings(string moduleName, string partName)
-        {
+        public void CreateSettings(string moduleName, string partName) {
             this.Context.Output.WriteLine(this.T("Creating content part {0} type settings in module {1}", partName, moduleName));
 
             var extensionDescriptor = this.extensionManager.GetExtension(moduleName);
 
-            if ( extensionDescriptor == null )
-            {
+            if ( extensionDescriptor == null ) {
                 throw new OrchardException(this.T("Creating content part {0} type settings failed: target module {1} could not be found.", partName, moduleName));
             }
 
@@ -203,8 +187,7 @@
             var csProjPath = HostingEnvironment.MapPath(string.Format("{1}/{0}/{0}.csproj", extensionDescriptor.Id, extensionFolder));
 
             // Filling properties according to provided data
-            try
-            {
+            try {
                 var properties = string.IsNullOrWhiteSpace(this.Properties)
                     ? Enumerable.Empty<KeyValuePair<string, string>>()
                     : this.Properties.Trim()
@@ -225,33 +208,28 @@
                 replacements.Add("TypePartEditorShapeFormFields", settingsEditorFields);
                 replacements.Add("TypePartBuilderSettings", builderLines);
             }
-            catch ( Exception )
-            {
+            catch ( Exception ) {
                 throw new OrchardException(this.T("Creating content part {0} type settings failed: Incorrect properties definition.", partName, moduleName));
             }
 
             // Create dirs
-            foreach ( var kv in settingsFilesInfo )
-            {
+            foreach ( var kv in settingsFilesInfo ) {
                 // Prepare templated file names
                 kv.Value.Name = replacements.Aggregate(kv.Value.Name,
                     (current, s) => current.Replace(string.Format("$${0}$$", s.Key), s.Value));
 
                 var dirPath = HostingEnvironment.MapPath(extensionFolder + "/" + extensionDescriptor.Id + "/" + kv.Value.Dir);
                 var filePath = HostingEnvironment.MapPath(extensionFolder + "/" + extensionDescriptor.Id + "/" + kv.Value.Dir + kv.Value.Name);
-                if ( !Directory.Exists(dirPath) )
-                {
+                if ( !Directory.Exists(dirPath) ) {
                     Directory.CreateDirectory(dirPath);
                 }
-                if ( File.Exists(filePath) )
-                {
+                if ( File.Exists(filePath) ) {
                     throw new OrchardException(this.T("{2} for {0} already exists in target module {1}.", partName, moduleName, kv.Key));
                 }
             }
 
             // Generating files from templates
-            foreach ( var kv in settingsFilesInfo )
-            {
+            foreach ( var kv in settingsFilesInfo ) {
                 var outputPath = HostingEnvironment.MapPath(extensionFolder + "/" + extensionDescriptor.Id + "/" + kv.Value.Dir + kv.Value.Name);
                 FillTemplateAndCreateFile(kv.Key, outputPath, replacements);
                 this.AddToModuleProject(kv.Value.Dir + kv.Value.Name, csProjPath, kv.Value.IsCompiled);
@@ -261,32 +239,27 @@
             this.Context.Output.WriteLine(this.T("Content part {0} type settings created successfully in module {1}", partName, moduleName));
         }
 
-        private static void FillTemplateAndCreateFile(string templateName, string outputPath, IEnumerable<KeyValuePair<string, string>> replacements)
-        {
+        private static void FillTemplateAndCreateFile(string templateName, string outputPath, IEnumerable<KeyValuePair<string, string>> replacements) {
             var data = FillTemplate(templateName, replacements);
             File.WriteAllText(outputPath, data);
         }
 
-        private static string FillTemplate(string templateName, IEnumerable<KeyValuePair<string, string>> replacements)
-        {
+        private static string FillTemplate(string templateName, IEnumerable<KeyValuePair<string, string>> replacements) {
             var data = File.ReadAllText(templatePath + templateName + ".txt");
             data = replacements.Aggregate(data, (current, s) => current.Replace(string.Format("$${0}$$", s.Key), s.Value));
             return data;
         }
 
-        private void AddToModuleProject(string relPath, string csProjPath, bool isCompiled)
-        {
+        private void AddToModuleProject(string relPath, string csProjPath, bool isCompiled) {
             relPath = relPath.Replace('/', '\\');
             var projectFileText = File.ReadAllText(csProjPath);
             var tagStart = string.Format("<{0} Include", isCompiled ? "Compile" : "Content");
 
-            if ( projectFileText.Contains(tagStart) )
-            {
+            if ( projectFileText.Contains(tagStart) ) {
                 var compileReference = string.Format("{1}=\"{0}\" />\r\n    ", relPath, tagStart);
                 projectFileText = projectFileText.Insert(projectFileText.LastIndexOf(tagStart, StringComparison.Ordinal), compileReference);
             }
-            else
-            {
+            else {
                 var itemGroupReference = string.Format("</ItemGroup>\r\n  <ItemGroup>\r\n    {1}=\"{0}\" />\r\n  ", relPath, tagStart);
                 projectFileText = projectFileText.Insert(projectFileText.LastIndexOf("</ItemGroup>", StringComparison.Ordinal), itemGroupReference);
             }
@@ -294,29 +267,23 @@
             this.TouchSolution(this.Context.Output);
         }
 
-        private void TouchSolution(TextWriter output)
-        {
+        private void TouchSolution(TextWriter output) {
             var rootWebProjectPath = HostingEnvironment.MapPath("~/Orchard.Web.csproj");
-            if ( rootWebProjectPath != null )
-            {
+            if ( rootWebProjectPath != null ) {
                 var solutionPath = string.Format("{0}\\Orchard.sln", Directory.GetParent(rootWebProjectPath).Parent.FullName);
-                if ( !File.Exists(solutionPath) )
-                {
+                if ( !File.Exists(solutionPath) ) {
                     output.WriteLine(this.T("Warning: Solution file could not be found at {0}", solutionPath));
                     return;
                 }
 
-                try
-                {
+                try {
                     File.SetLastWriteTime(solutionPath, DateTime.Now);
                 }
-                catch
-                {
+                catch {
                     output.WriteLine(this.T("An unexpected error occured while trying to refresh the Visual Studio solution. Please reload it."));
                 }
             }
-            else
-            {
+            else {
                 output.WriteLine(this.T("An unexpected error occured while trying to refresh the Visual Studio solution. Please reload it."));
             }
         }

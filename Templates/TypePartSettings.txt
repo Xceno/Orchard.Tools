@@ -19,26 +19,26 @@ $$TypePartProperties$$
     /// <summary>
     /// Overrides default editors to enable putting settings on SubMenu part.
     /// </summary>
-    public class $$PartName$$SettingsHooks : ContentDefinitionEditorEventsBase
-    {
+    public class $$PartName$$SettingsHooks : ContentDefinitionEditorEventsBase {
         /// <summary>
         /// Overrides editor shown when part is attached to content type. Enables adding setting field to the content part
         /// attached.
         /// </summary>
         /// <param name="definition"></param>
         /// <returns></returns>
-        public override IEnumerable<TemplateViewModel> TypePartEditor(ContentTypePartDefinition definition)
-        {
-            if (definition.PartDefinition.Name != "$$PartName$$")
+        public override IEnumerable<TemplateViewModel> TypePartEditor(ContentTypePartDefinition definition) {
+            if (definition.PartDefinition.Name != "$$PartName$$") {
                 yield break;
+            }
+
             var model = definition.Settings.GetModel<$$PartName$$TypePartSettings>();
             yield return DefinitionTemplate(model);
         }
 
-        public override IEnumerable<TemplateViewModel> TypePartEditorUpdate(ContentTypePartDefinitionBuilder builder, IUpdateModel updateModel)
-        {
-            if (builder.Name != "$$PartName$$")
+        public override IEnumerable<TemplateViewModel> TypePartEditorUpdate(ContentTypePartDefinitionBuilder builder, IUpdateModel updateModel) {
+            if (builder.Name != "$$PartName$$") {
                 yield break;
+            }
 
             var model = new $$PartName$$TypePartSettings();
 

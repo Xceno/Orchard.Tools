@@ -1,5 +1,4 @@
-﻿    public $$PropertyType$$ $$PropertyName$$
-    {
+﻿    public $$PropertyType$$ $$PropertyName$$ {
         get { return this.Retrieve(r => r.$$PropertyName$$); }
         set { this.Store(s => s.$$PropertyName$$, value); }
     }

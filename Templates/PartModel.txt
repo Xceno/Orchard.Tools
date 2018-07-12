@@ -4,8 +4,7 @@
     using Orchard.ContentManagement;
 
     $$PartFeatureAttribute$$
-    public class $$PartName$$ : ContentPart<$$CleanPartName$$Record>
-    {
+    public class $$PartName$$ : ContentPart<$$CleanPartName$$Record> {
         $$PartModelProperties$$
     }
 }

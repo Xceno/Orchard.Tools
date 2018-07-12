@@ -1,5 +1,4 @@
-﻿namespace $$ModuleName$$.Drivers
-{
+﻿namespace $$ModuleName$$.Drivers {
     using Orchard.ContentManagement;
     using Orchard.ContentManagement.Drivers;
     using Orchard.Localization;
@@ -7,40 +6,34 @@
     using $$ModuleName$$.Models;
 
     $$PartFeatureAttribute$$
-    public class $$PartName$$Driver : ContentPartDriver<$$PartName$$>
-    {
+    public class $$PartName$$Driver : ContentPartDriver<$$PartName$$> {
         private const string TemplateName = "Parts/$$PartShapeFileName$$";
         private const string ShapeType = "$$PartShapeName$$";
         private readonly INotifier notifier;
 
-        public $$PartName$$Driver(INotifier notifier)
-        {
+        public $$PartName$$Driver(INotifier notifier) {
             this.notifier = notifier;
             this.T = NullLocalizer.Instance;
         }
 
         public Localizer T { get; set; }
 
-        protected override DriverResult Display($$PartName$$ part, string displayType, dynamic shapeHelper)
-        {
+        protected override DriverResult Display($$PartName$$ part, string displayType, dynamic shapeHelper) {
             return this.ContentShape(ShapeType, () => shapeHelper.$$PartShapeName$$(ContentItem: part.ContentItem));
         }
 
-        protected override DriverResult Editor($$PartName$$ part, dynamic shapeHelper)
-        {
+        protected override DriverResult Editor($$PartName$$ part, dynamic shapeHelper) {
             return this.ContentShape(ShapeType, () => shapeHelper.EditorTemplate(TemplateName: TemplateName, Model: part, Prefix: this.Prefix));
         }
 
-        protected override DriverResult Editor($$PartName$$ part, IUpdateModel updater, dynamic shapeHelper)
-        {
-            if (updater.TryUpdateModel(part, this.Prefix, null, null))
-            {
+        protected override DriverResult Editor($$PartName$$ part, IUpdateModel updater, dynamic shapeHelper) {
+            if (updater.TryUpdateModel(part, this.Prefix, null, null)) {
                 this.notifier.Information(this.T("$$PartName$$ edited successfully"));
             }
-            else
-            {
+            else {
                 this.notifier.Error(this.T("Error during $$PartName$$ update!"));
             }
+
             return this.Editor(part, shapeHelper);
         }
     }
