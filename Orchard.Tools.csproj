@@ -111,6 +111,8 @@
   <ItemGroup>
     <Compile Include="Commands\CodeGenerationCommands.cs" />
     <Compile Include="Commands\TemplateInfo.cs" />
+    <Compile Include="Helpers\Time\DateTimeOffsetExtensions.cs" />
+    <Compile Include="Helpers\Time\TimeSpanExtensions.cs" />
     <Compile Include="Helpers\Routing\ApiRouteFactory.cs" />
     <Compile Include="Helpers\Comparer\ContentItemComparer.cs" />
     <Compile Include="Helpers\Comparer\ContentItemRecordComparer.cs" />
