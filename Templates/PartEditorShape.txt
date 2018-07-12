@@ -4,9 +4,9 @@
 @{ Layout.Title = T("Edit $$PartName$$").ToString(); }
 
 <fieldset>
-	<legend>@T("$$PartName$$ settings")</legend>
-	<ol>
+    <legend>@T("$$PartName$$ settings")</legend>
+    <ol>
 $$PartEditorShapeFormFields$$
-	</ol>
+    </ol>
 </fieldset>
 
