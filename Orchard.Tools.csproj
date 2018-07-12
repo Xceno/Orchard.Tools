@@ -113,6 +113,7 @@
     <Compile Include="Commands\TemplateInfo.cs" />
     <Compile Include="Helpers\Resources\ResourceDefinitionExtensions.cs" />
     <Compile Include="Helpers\Resources\ResourceManifestExtensions.cs" />
+    <Compile Include="Helpers\Strings\StringExtensions.cs" />
     <Compile Include="Helpers\Time\DateTimeOffsetExtensions.cs" />
     <Compile Include="Helpers\Time\TimeSpanExtensions.cs" />
     <Compile Include="Helpers\Routing\ApiRouteFactory.cs" />
