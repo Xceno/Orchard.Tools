@@ -112,6 +112,9 @@
     <Compile Include="Commands\CodeGenerationCommands.cs" />
     <Compile Include="Commands\TemplateInfo.cs" />
     <Compile Include="Helpers\ApiRouteFactory.cs" />
+    <Compile Include="Helpers\Comparer\ContentItemComparer.cs" />
+    <Compile Include="Helpers\Comparer\ContentItemRecordComparer.cs" />
+    <Compile Include="Helpers\Comparer\ContentItemVersionRecordComparer.cs" />
     <Compile Include="Helpers\MvcRouteFactory.cs" />
     <Compile Include="Helpers\ReflectOnMethod.cs" />
     <Compile Include="Helpers\RoutingHelpers.cs" />
