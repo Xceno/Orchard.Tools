@@ -1,9 +1,10 @@
-﻿namespace Orchard.Tools.Helpers {
+﻿namespace Orchard.Tools.Helpers.Routing {
     using System;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Orchard.Mvc.Routes;
+    using Orchard.Tools.Helpers.Reflection;
 
     public class MvcRouteFactory {
         private readonly string moduleAreaName;

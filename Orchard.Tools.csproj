@@ -111,13 +111,13 @@
   <ItemGroup>
     <Compile Include="Commands\CodeGenerationCommands.cs" />
     <Compile Include="Commands\TemplateInfo.cs" />
-    <Compile Include="Helpers\ApiRouteFactory.cs" />
+    <Compile Include="Helpers\Routing\ApiRouteFactory.cs" />
     <Compile Include="Helpers\Comparer\ContentItemComparer.cs" />
     <Compile Include="Helpers\Comparer\ContentItemRecordComparer.cs" />
     <Compile Include="Helpers\Comparer\ContentItemVersionRecordComparer.cs" />
-    <Compile Include="Helpers\MvcRouteFactory.cs" />
-    <Compile Include="Helpers\ReflectOnMethod.cs" />
-    <Compile Include="Helpers\RoutingHelpers.cs" />
+    <Compile Include="Helpers\Routing\MvcRouteFactory.cs" />
+    <Compile Include="Helpers\Reflection\ReflectOnMethod.cs" />
+    <Compile Include="Helpers\Routing\RoutingHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

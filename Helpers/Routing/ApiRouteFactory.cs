@@ -1,4 +1,4 @@
-﻿namespace Orchard.Tools.Helpers {
+﻿namespace Orchard.Tools.Helpers.Routing {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -11,6 +11,7 @@
     using System.Web.Http.Routing;
     using System.Web.Http.Routing.Constraints;
     using Orchard.Mvc.Routes;
+    using Orchard.Tools.Helpers.Reflection;
 
     /// <summary>
     /// The ApiRouteFactoy makes it possible to easily write WebApi Routes in the style of AttributeRouting,

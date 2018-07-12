@@ -1,4 +1,4 @@
-﻿namespace Orchard.Tools.Helpers {
+﻿namespace Orchard.Tools.Helpers.Routing {
     using System.Web.Mvc;
     using System.Web.Routing;
     using Orchard.Mvc.Routes;

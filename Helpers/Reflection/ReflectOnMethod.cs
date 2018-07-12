@@ -1,4 +1,4 @@
-﻿namespace Orchard.Tools.Helpers {
+﻿namespace Orchard.Tools.Helpers.Reflection {
     using System;
     using System.Linq.Expressions;
     using System.Reflection;
