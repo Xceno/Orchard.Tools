@@ -128,6 +128,7 @@
     <Compile Include="Helpers\Routing\MvcRouteFactory.cs" />
     <Compile Include="Helpers\Reflection\ReflectOnMethod.cs" />
     <Compile Include="Helpers\Routing\RoutingHelpers.cs" />
+    <Compile Include="Helpers\Tokens\TokenExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,10 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
       <Private>$(MvcBuildViews)</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Tokens\Orchard.Tokens.csproj">
+      <Project>{6f759635-13d7-4e94-bcc9-80445d63f117}</Project>
+      <Name>Orchard.Tokens</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
