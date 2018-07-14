@@ -112,6 +112,7 @@
     <Compile Include="Commands\CodeGenerationCommands.cs" />
     <Compile Include="Commands\TemplateInfo.cs" />
     <Compile Include="Helpers\Html\HtmlHelperExtensions.cs" />
+    <Compile Include="Helpers\Long\LongExtensions.cs" />
     <Compile Include="Helpers\Resources\ResourceDefinitionExtensions.cs" />
     <Compile Include="Helpers\Resources\ResourceManifestExtensions.cs" />
     <Compile Include="Helpers\Strings\StringExtensions.cs" />
