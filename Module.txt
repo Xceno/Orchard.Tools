@@ -2,7 +2,7 @@
 AntiForgery: enabled
 Author: Xceno | Some pieces taken from other modules. See comments
 Website: https://www.xceno.io
-Version: 1.0
+Version: 1.1.0
 OrchardVersion: 1.10
 Description: Various tools and helper functions.
 Features:
