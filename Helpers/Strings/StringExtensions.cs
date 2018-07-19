@@ -1,7 +1,9 @@
 ﻿namespace Orchard.Tools.Helpers.Strings {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
+    using System.Text;
 
     public static class StringExtensions {
         /// <summary> Trims a string or returns an empty string, if the original string is null.</summary>
@@ -60,6 +62,24 @@
             var letters = source.ToCharArray();
             letters[0] = char.ToUpper(letters[0]);
             return new string(letters);
+        }
+
+        public static string SplitCamel(this string camelString) {
+            var sb = new StringBuilder();
+            var last = char.MinValue;
+            foreach ( var c in camelString ) {
+                if ( char.IsLower(last) && char.IsUpper(c) ) {
+                    sb.Append(' ');
+                    sb.Append(c.ToString(CultureInfo.InvariantCulture).ToLower());
+                }
+                else {
+                    sb.Append(c);
+                }
+
+                last = c;
+            }
+
+            return sb.ToString();
         }
     }
 }
