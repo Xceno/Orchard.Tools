@@ -67,6 +67,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -113,6 +114,9 @@
     <Compile Include="Helpers\Content\ContentManagerExtensions.cs" />
     <Compile Include="Helpers\Html\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\Long\LongExtensions.cs" />
+    <Compile Include="Helpers\Migration\AlterTableCommandExtensions.cs" />
+    <Compile Include="Helpers\Migration\CreateTableCommandExtensions.cs" />
+    <Compile Include="Helpers\Migration\MigrationExtensions.cs" />
     <Compile Include="Helpers\Reflection\ObjectExtensions.cs" />
     <Compile Include="Helpers\Reflection\ReflectFluidOn.cs" />
     <Compile Include="Helpers\Resources\ResourceDefinitionExtensions.cs" />
@@ -163,6 +167,14 @@
       <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
       <Name>Orchard.Core</Name>
       <Private>$(MvcBuildViews)</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.ContentPicker\Orchard.ContentPicker.csproj">
+      <Project>{f301ef7d-f19c-4d83-aa94-cb64f29c037d}</Project>
+      <Name>Orchard.ContentPicker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Fields\Orchard.Fields.csproj">
+      <Project>{3787dde5-e5c8-4841-bda7-dcb325388064}</Project>
+      <Name>Orchard.Fields</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orchard.Tokens\Orchard.Tokens.csproj">
       <Project>{6f759635-13d7-4e94-bcc9-80445d63f117}</Project>
