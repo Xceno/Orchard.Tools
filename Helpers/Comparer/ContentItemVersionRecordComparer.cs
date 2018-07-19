@@ -1,10 +1,10 @@
-﻿namespace Orchard.Tools.Helpers {
+﻿namespace Orchard.Tools.Helpers.Comparer {
     using System.Collections.Generic;
     using Orchard.ContentManagement.Records;
 
     public class ContentItemVersionRecordComparer : IEqualityComparer<ContentItemVersionRecord> {
         public bool Equals(ContentItemVersionRecord x, ContentItemVersionRecord y) {
-            return x.Id == y.Id;
+            return x != null && y != null && x.Id == y.Id;
         }
 
         public int GetHashCode(ContentItemVersionRecord obj) {
