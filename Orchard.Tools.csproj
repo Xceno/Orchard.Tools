@@ -129,6 +129,7 @@
     <Compile Include="Helpers\Routing\RoutingHelpers.cs" />
     <Compile Include="Helpers\Tokens\TokenExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statics.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

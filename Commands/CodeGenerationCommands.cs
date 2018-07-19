@@ -12,6 +12,7 @@
     /// Original code by Piotr Szmyd.
     /// http://gallery.orchardproject.net/Packages/Orchard.Module.Szmyd.CodeGeneration
     /// </summary>
+    [OrchardFeature(Statics.FeatureNames.CodeGeneration)]
     public class CodeGenerationCommands : DefaultOrchardCommandHandler {
         private static readonly IDictionary<string, TemplateInfo> filesInfo =
             new Dictionary<string, TemplateInfo>

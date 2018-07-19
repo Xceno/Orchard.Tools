@@ -8,3 +8,7 @@ Description: Various tools and helper functions.
 Features:
     Orchard.Tools:
         Description: Various tools and helper functions.
+        Dependencies: Orchard.Tokens
+    Orchard.Tools.CodeGeneration
+        Description: Advanced code generation feature. Original Version by Piotr Szmyd.
+        Category: Developer
