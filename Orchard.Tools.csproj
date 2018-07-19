@@ -112,6 +112,7 @@
     <Compile Include="Commands\CodeGenerationCommands.cs" />
     <Compile Include="Commands\TemplateInfo.cs" />
     <Compile Include="Helpers\Content\ContentManagerExtensions.cs" />
+    <Compile Include="Helpers\Content\ContentPartExtensions.cs" />
     <Compile Include="Helpers\Html\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\Long\LongExtensions.cs" />
     <Compile Include="Helpers\Migration\AlterTableCommandExtensions.cs" />
